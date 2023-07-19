@@ -1,16 +1,21 @@
 .app-container__filters {
   display: flex;
-  width: 150px;
-  justify-content: space-between;
+  align-items: center;
+  width: 180px;
+  justify-content: space-evenly;
 }
 
 .app-container__sort-button {
-  width: 65px;
-  height: 65px;
+  width: 45px;
+  height: 45px;
   background-position: center;
   background-size: contain;
   background-repeat: no-repeat;
   cursor: pointer;
+}
+
+.app-container__sort-button:hover {
+  scale: 1.1
 }
 
 .app-container__sort-button_up {
@@ -19,4 +24,8 @@
 
 .app-container__sort-button_bottom {
   background-image: url('../../images/arrow-to-down.svg');
+}
+
+.app-container__sort-text {
+  font-size: 20px;
 }
