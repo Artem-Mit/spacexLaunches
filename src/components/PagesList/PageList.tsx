@@ -2,8 +2,8 @@ import React from 'react';
 import './PageList.css';
 
 interface IProps {
-  onNext: () => void;
-  onPrev: () => void;
+  onNext(): void;
+  onPrev(): void;
   pageNumberForUser: number;
   lastPage: number;
 }

@@ -2,8 +2,8 @@ import React from 'react';
 import './Filter.css';
 
 interface IProps {
-  onMaxDate: () => void,
-  onMinDate: () => void,
+  onMaxDate(): void,
+  onMinDate(): void,
 }
 
 export default function Filter({ onMaxDate, onMinDate }: IProps) {

@@ -5,7 +5,7 @@
   height: 350px;
   width: 80%;
   padding: 20px 20px;
-  background-color: rgba(255,255,255, 0.2);
+  background-color: rgba(255, 255, 255, 0.2);
   border-radius: 20px;
   margin-top: 40px;
 }
@@ -20,6 +20,11 @@
   height: 200px;
   border-radius: 50%;
   object-fit: cover;
+  transition: scale .3s ease;
+}
+
+.rocket__photo:hover {
+  scale: 2;
 }
 
 .rocket__info {
@@ -28,7 +33,7 @@
   justify-content: space-between;
   align-items: center;
   height: 75%;
-  width: 70%;
+  width: 60%;
   margin: 0px 15px;
 }
 

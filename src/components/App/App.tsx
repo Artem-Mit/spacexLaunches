@@ -1,22 +1,22 @@
-import React, { useCallback, useEffect, useState } from 'react';
-import './App.css';
-import { useGetSpacexByYearMutation } from '../../redux/spacexApi';
-import { Rocket } from '../../types/Rocket';
+import React from 'react';
 import RocketCard from '../Rocket/RocketCard';
 import Filter from '../Filter/Filter';
 import PageList from '../PagesList/PageList';
+import { useGetSpacexByYearMutation } from '../../redux/spacexApi';
+import { Rocket } from '../../types/Rocket';
 import { LOADING_TEXT, SUCCESS_TEXT, ERROR_TEXT } from '../../utils/constatnts';
+import './App.css';
 
 export default function App() {
   const [getSpacex, { isError, isLoading }] = useGetSpacexByYearMutation();
-  const [missions, setMissions] = useState<Rocket[]>([]);
-  const [missionsOnPage, setMissionsOnPage] = useState<Rocket[]>([]);
-  const [currentPage, setCurrentPage] = useState(0);
+  const [missions, setMissions] = React.useState<Rocket[]>([]);
+  const [missionsOnPage, setMissionsOnPage] = React.useState<Rocket[]>([]);
+  const [currentPage, setCurrentPage] = React.useState(0);
   const missionsPerPage = 5;
   const lastPage = Math.ceil(missions.length / missionsPerPage);
   const pageNumberForUser = currentPage + 1;
 
-  const setCurrentMissionsOnPage = useCallback(() => {
+  const setCurrentMissionsOnPage = React.useCallback(() => {
     if (currentPage === 0) {
       setMissionsOnPage(missions.slice(0, missionsPerPage));
       return;
@@ -37,11 +37,13 @@ export default function App() {
   const goToNextPage = () => {
     setCurrentPage((prev) => (prev + 1));
     setCurrentMissionsOnPage();
+    window.scrollTo(0, 0);
   };
 
   const goToPrevPage = () => {
     setCurrentPage((prev) => (prev - 1));
     setCurrentMissionsOnPage();
+    window.scrollTo(0, 0);
   };
 
   const filterMaxDateTop = () => {
@@ -56,7 +58,7 @@ export default function App() {
     setMissionsOnPage(sortedResult);
   };
 
-  const getRockets = useCallback(async () => {
+  const getRockets = React.useCallback(async () => {
     try {
       const res = await getSpacex('').unwrap();
       const sortedResult = [...res].sort((a, b) => Date.parse(b.date_utc) - Date.parse(a.date_utc));
@@ -66,11 +68,11 @@ export default function App() {
     }
   }, [getSpacex]);
 
-  useEffect(() => {
+  React.useEffect(() => {
     getRockets();
   }, [getRockets]);
 
-  useEffect(() => {
+  React.useEffect(() => {
     setCurrentMissionsOnPage();
   }, [currentPage, missions, setCurrentMissionsOnPage]);
 
@@ -107,7 +109,18 @@ export default function App() {
           success={mission.success}
         />
       ))}
-
+      <div className="app-container__buttons-container">
+        <PageList
+          lastPage={lastPage}
+          pageNumberForUser={pageNumberForUser}
+          onNext={goToNextPage}
+          onPrev={goToPrevPage}
+        />
+        <Filter
+          onMaxDate={filterMaxDateTop}
+          onMinDate={filterMaxDateBottom}
+        />
+      </div>
     </div>
   );
 }
