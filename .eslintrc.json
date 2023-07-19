@@ -16,6 +16,6 @@
     "project": "./tsconfig.json"
   },
   "rules": {
-    "import/no-extraneous-dependencies": ["error", {"packageDir": "./src"}]
+    "import/no-extraneous-dependencies": ["error", {"packageDir": "./"}]
   }
 }
