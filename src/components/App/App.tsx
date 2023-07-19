@@ -109,18 +109,20 @@ export default function App() {
           success={mission.success}
         />
       ))}
-      <div className="app-container__buttons-container">
-        <PageList
-          lastPage={lastPage}
-          pageNumberForUser={pageNumberForUser}
-          onNext={goToNextPage}
-          onPrev={goToPrevPage}
-        />
-        <Filter
-          onMaxDate={filterMaxDateTop}
-          onMinDate={filterMaxDateBottom}
-        />
-      </div>
+      {!isLoading && !isError && (
+        <div className="app-container__buttons-container">
+          <PageList
+            lastPage={lastPage}
+            pageNumberForUser={pageNumberForUser}
+            onNext={goToNextPage}
+            onPrev={goToPrevPage}
+          />
+          <Filter
+            onMaxDate={filterMaxDateTop}
+            onMinDate={filterMaxDateBottom}
+          />
+        </div>
+      )}
     </div>
   );
 }
