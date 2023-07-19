@@ -1,0 +1,22 @@
+.app-container__filters {
+  display: flex;
+  width: 150px;
+  justify-content: space-between;
+}
+
+.app-container__sort-button {
+  width: 65px;
+  height: 65px;
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+  cursor: pointer;
+}
+
+.app-container__sort-button_up {
+  background-image: url('../../images/arrow-to-top.svg');
+}
+
+.app-container__sort-button_bottom {
+  background-image: url('../../images/arrow-to-down.svg');
+}

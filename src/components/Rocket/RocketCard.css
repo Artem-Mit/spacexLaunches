@@ -1,0 +1,49 @@
+.rocket {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 350px;
+  width: 80%;
+  padding: 20px 20px;
+  background-color: rgba(255,255,255, 0.2);
+  border-radius: 20px;
+  margin-top: 40px;
+}
+
+.rocket__label {
+  width: 200px;
+  height: 200px;
+}
+
+.rocket__photo {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.rocket__info {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  height: 75%;
+  width: 70%;
+  margin: 0px 15px;
+}
+
+.rocket__name {
+  font-size: 40px;
+  margin: 0;
+  text-align: center;
+}
+
+.rocket__details {
+  font-size: 15px;
+  margin: 0;
+}
+
+.rocket__date {
+  margin: 0;
+  font-size: 20px;
+}
