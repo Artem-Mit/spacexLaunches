@@ -17,3 +17,7 @@
   margin-top: 25px;
 }
 
+.app-container__buttons-container_bottom {
+  justify-content: center;
+}
+

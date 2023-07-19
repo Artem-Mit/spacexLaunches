@@ -110,16 +110,12 @@ export default function App() {
         />
       ))}
       {!isLoading && !isError && (
-        <div className="app-container__buttons-container">
+        <div className="app-container__buttons-container app-container__buttons-container_bottom">
           <PageList
             lastPage={lastPage}
             pageNumberForUser={pageNumberForUser}
             onNext={goToNextPage}
             onPrev={goToPrevPage}
-          />
-          <Filter
-            onMaxDate={filterMaxDateTop}
-            onMinDate={filterMaxDateBottom}
           />
         </div>
       )}
