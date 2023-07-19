@@ -1,11 +1,13 @@
 {
-  "name": "subtotaltest",
+  "name": "SpaceX Launches",
   "version": "1.0.0",
   "description": "",
+  "homepage": "https://Artem-Mit.github.io/spacexLaunches",
   "main": "index.js",
   "scripts": {
     "start": "webpack serve --open --env development",
     "build": "webpack --env production",
+    "predeploy": "npm run build",
     "deploy": "gh-pages -d dist"
   },
   "keywords": [],
