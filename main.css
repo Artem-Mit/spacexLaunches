@@ -70,17 +70,22 @@
 }
 .app-container__filters {
   display: flex;
-  width: 150px;
-  justify-content: space-between;
+  align-items: center;
+  width: 180px;
+  justify-content: space-evenly;
 }
 
 .app-container__sort-button {
-  width: 65px;
-  height: 65px;
+  width: 45px;
+  height: 45px;
   background-position: center;
   background-size: contain;
   background-repeat: no-repeat;
   cursor: pointer;
+}
+
+.app-container__sort-button:hover {
+  scale: 1.1
 }
 
 .app-container__sort-button_up {
@@ -89,6 +94,10 @@
 
 .app-container__sort-button_bottom {
   background-image: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4NCg0KPCEtLSBVcGxvYWRlZCB0bzogU1ZHIFJlcG8sIHd3dy5zdmdyZXBvLmNvbSwgR2VuZXJhdG9yOiBTVkcgUmVwbyBNaXhlciBUb29scyAtLT4NCjxzdmcgd2lkdGg9IjgwMHB4IiBoZWlnaHQ9IjgwMHB4IiB2aWV3Qm94PSIwIDAgMjQgMjQiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+DQo8cGF0aCBmaWxsLXJ1bGU9ImV2ZW5vZGQiIGNsaXAtcnVsZT0iZXZlbm9kZCIgZD0iTTE3LjUzMDMgMTMuOTY5N0MxNy44MjMyIDE0LjI2MjYgMTcuODIzMiAxNC43Mzc0IDE3LjUzMDMgMTUuMDMwM0wxMi41MzAzIDIwLjAzMDNDMTIuMjM3NCAyMC4zMjMyIDExLjc2MjYgMjAuMzIzMiAxMS40Njk3IDIwLjAzMDNMNi40Njk2NyAxNS4wMzAzQzYuMTc2NzggMTQuNzM3NCA2LjE3Njc4IDE0LjI2MjYgNi40Njk2NyAxMy45Njk3QzYuNzYyNTYgMTMuNjc2OCA3LjIzNzQ0IDEzLjY3NjggNy41MzAzMyAxMy45Njk3TDEyIDE4LjQzOTNMMTYuNDY5NyAxMy45Njk3QzE2Ljc2MjYgMTMuNjc2OCAxNy4yMzc0IDEzLjY3NjggMTcuNTMwMyAxMy45Njk3WiIgZmlsbD0iI2ZmZiIvPg0KPGcgb3BhY2l0eT0iMC41Ij4NCjxwYXRoIGQ9Ik0xMi43NSA5LjVDMTIuNzUgOC41NDY2NSAxMi40NzAyIDcuMTMzMzIgMTEuNjA4NyA1LjkzNjc3QzEwLjcxOTYgNC43MDE5OCA5LjI0NDQ0IDMuNzUgNyAzLjc1QzYuNTg1NzkgMy43NSA2LjI1IDQuMDg1NzkgNi4yNSA0LjVDNi4yNSA0LjkxNDIxIDYuNTg1NzkgNS4yNSA3IDUuMjVDOC43NTU1NiA1LjI1IDkuNzgwNCA1Ljk2NDY4IDEwLjM5MTMgNi44MTMyM0MxMS4wMjk4IDcuNzAwMDIgMTEuMjUgOC43ODY2OCAxMS4yNSA5LjVMMTEuMjUgMTcuNjg5M0wxMiAxOC40MzkzTDEyLjc1IDE3LjY4OTNWOS41WiIgZmlsbD0iI2ZmZiIvPg0KPHBhdGggZD0iTTEyLjE5NzcgMjAuMjIzNkMxMi4wNDMyIDIwLjI2NTYgMTEuODc4IDIwLjI1NzUgMTEuNzI3OCAyMC4xOTlDMTEuODEyMiAyMC4yMzE5IDExLjkwNCAyMC4yNSAxMiAyMC4yNUMxMi4wNjg0IDIwLjI1IDEyLjEzNDcgMjAuMjQwOCAxMi4xOTc3IDIwLjIyMzZaIiBmaWxsPSIjZmZmIi8+DQo8L2c+DQo8L3N2Zz4=);
+}
+
+.app-container__sort-text {
+  font-size: 20px;
 }
 .app-container__pages {
   display: flex;
@@ -107,8 +116,13 @@
   cursor: pointer;
 }
 
+.app-container__button:hover:enabled {
+  scale: 1.1
+}
+
 .app-container__button:disabled {
   opacity: 10%;
+  cursor: default;
 }
 /*! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */
 
