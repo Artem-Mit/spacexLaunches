@@ -1,4 +1,3 @@
-import React from 'react';
 import { Rocket } from '../../types/Rocket';
 import './RocketCard.css';
 

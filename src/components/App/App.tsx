@@ -1,4 +1,4 @@
-import React from 'react';
+import { useCallback, useEffect } from 'react';
 import { useGetSpacexByYearMutation } from '../../redux/spacexApi';
 import { LOADING_TEXT, SUCCESS_TEXT, ERROR_TEXT } from '../../utils/constatnts';
 import './App.css';
@@ -10,7 +10,7 @@ export default function App() {
   const [getSpacex, { isError, isLoading }] = useGetSpacexByYearMutation();
   const dispatch = useAppDispatch();
 
-  const getRockets = React.useCallback(async () => {
+  const getRockets = useCallback(async () => {
     try {
       const res = await getSpacex('').unwrap();
       const sortedResult = [...res].sort((a, b) => Date.parse(b.date_utc) - Date.parse(a.date_utc));
@@ -23,7 +23,7 @@ export default function App() {
     }
   }, [dispatch, getSpacex]);
 
-  React.useEffect(() => {
+  useEffect(() => {
     getRockets();
   }, [getRockets]);
 

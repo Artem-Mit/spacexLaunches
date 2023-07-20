@@ -16,6 +16,8 @@
     "project": "./tsconfig.json"
   },
   "rules": {
-    "import/no-extraneous-dependencies": ["error", {"packageDir": "./"}]
+    "import/no-extraneous-dependencies": ["error", {"packageDir": "./"}],
+    "react/jsx-uses-react": "off",
+    "react/react-in-jsx-scope": "off"
   }
 }

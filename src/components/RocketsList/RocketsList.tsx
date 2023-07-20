@@ -1,4 +1,4 @@
-import React from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import PageButtons from '../PagesButtons/PageButtons';
 import Filter from '../Filter/Filter';
 import RocketCard from '../Rocket/RocketCard';
@@ -9,13 +9,13 @@ export default function RocketsList() {
   const missions = useAppSelector((store) => store.missions.rockets);
   const isLoading = useAppSelector((store) => store.missions.isLoading);
   const isError = useAppSelector((store) => store.missions.isError);
-  const [currentPage, setCurrentPage] = React.useState(0);
-  const [missionsOnPage, setMissionsOnPage] = React.useState<Rocket[]>([]);
+  const [currentPage, setCurrentPage] = useState(0);
+  const [missionsOnPage, setMissionsOnPage] = useState<Rocket[]>([]);
   const missionsPerPage = 5;
   const lastPage = Math.ceil(missions.length / missionsPerPage);
   const pageNumberForUser = currentPage + 1;
 
-  const setCurrentMissionsOnPage = React.useCallback(() => {
+  const setCurrentMissionsOnPage = useCallback(() => {
     if (currentPage === 0) {
       setMissionsOnPage(missions.slice(0, missionsPerPage));
       return;
@@ -57,7 +57,7 @@ export default function RocketsList() {
     setMissionsOnPage(sortedResult);
   };
 
-  React.useEffect(() => {
+  useEffect(() => {
     setCurrentMissionsOnPage();
   }, [currentPage, missions, setCurrentMissionsOnPage]);
 
