@@ -1,5 +1,5 @@
 import React from 'react';
-import './PageList.css';
+import './PageButtons.css';
 
 interface IProps {
   onNext(): void;
@@ -8,7 +8,7 @@ interface IProps {
   lastPage: number;
 }
 
-export default function PageList({
+export default function PageButtons({
   onNext, onPrev, pageNumberForUser, lastPage,
 }: IProps) {
   return (
