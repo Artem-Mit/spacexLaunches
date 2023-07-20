@@ -3,7 +3,7 @@ import PageButtons from '../PagesButtons/PageButtons';
 import Filter from '../Filter/Filter';
 import RocketCard from '../Rocket/RocketCard';
 import { Rocket } from '../../types/Rocket';
-import { useAppSelector } from '../hooks/hooks';
+import { useAppSelector } from '../../hooks/hooks';
 
 export default function RocketsList() {
   const missions = useAppSelector((store) => store.missions.rockets);

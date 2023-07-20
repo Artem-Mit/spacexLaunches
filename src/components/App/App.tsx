@@ -2,7 +2,7 @@ import React from 'react';
 import { useGetSpacexByYearMutation } from '../../redux/spacexApi';
 import { LOADING_TEXT, SUCCESS_TEXT, ERROR_TEXT } from '../../utils/constatnts';
 import './App.css';
-import { useAppDispatch } from '../hooks/hooks';
+import { useAppDispatch } from '../../hooks/hooks';
 import { addMissions, setLoadingStatus, setErrorStatus } from '../../redux/missionsSlice';
 import RocketsList from '../RocketsList/RocketsList';
 
