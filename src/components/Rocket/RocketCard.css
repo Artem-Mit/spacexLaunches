@@ -3,7 +3,7 @@
   align-items: center;
   justify-content: space-between;
   height: 350px;
-  width: 80%;
+  width: 1220px;
   padding: 20px 20px;
   background-color: rgba(255, 255, 255, 0.2);
   border-radius: 20px;
@@ -32,8 +32,8 @@
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  height: 75%;
-  width: 60%;
+  height: 265px;
+  width: 730px;
   margin: 0px 15px;
 }
 
