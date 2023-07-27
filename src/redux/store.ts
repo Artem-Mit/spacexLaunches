@@ -1,11 +1,15 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { spacexApi } from './spacexApi';
 import missionsReducer from './missionsSlice';
+import loadingStatusReducer from './loadingStatusSlice';
+import pagesStatusReducer from './pagesSlice';
 
 const store = configureStore({
   reducer: {
     [spacexApi.reducerPath]: spacexApi.reducer,
     missions: missionsReducer,
+    status: loadingStatusReducer,
+    pages: pagesStatusReducer,
   },
   middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(spacexApi.middleware),
 });

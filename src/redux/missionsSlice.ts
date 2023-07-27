@@ -1,16 +1,13 @@
+/* eslint-disable no-param-reassign */
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 import { Rocket } from '../types/Rocket';
 
 type MissionsState = {
   rockets: Rocket[],
-  isLoading: boolean,
-  isError: boolean
 };
 
 const initialState: MissionsState = {
   rockets: [],
-  isLoading: true,
-  isError: false,
 };
 
 const missionsSlice = createSlice({
@@ -18,18 +15,16 @@ const missionsSlice = createSlice({
   initialState,
   reducers: {
     addMissions(state, action: PayloadAction<Rocket[]>) {
-      state.rockets.push(...action.payload);
+      state.rockets = action.payload;
     },
-    setLoadingStatus(state, action: PayloadAction<boolean>) {
-      // eslint-disable-next-line no-param-reassign
-      state.isLoading = action.payload;
+    sortMaxDateTop(state) {
+      state.rockets = state.rockets.sort((a, b) => Date.parse(b.date_utc) - Date.parse(a.date_utc));
     },
-    setErrorStatus(state, action: PayloadAction<boolean>) {
-      // eslint-disable-next-line no-param-reassign
-      state.isError = action.payload;
+    sortMaxDateBottom(state) {
+      state.rockets = state.rockets.sort((a, b) => Date.parse(a.date_utc) - Date.parse(b.date_utc));
     },
   },
 });
 
-export const { addMissions, setLoadingStatus, setErrorStatus } = missionsSlice.actions;
+export const { addMissions, sortMaxDateTop, sortMaxDateBottom } = missionsSlice.actions;
 export default missionsSlice.reducer;

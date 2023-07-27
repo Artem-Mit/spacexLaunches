@@ -1,12 +1,11 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-import { Rocket } from '../types/Rocket';
 
 export const spacexApi = createApi({
   reducerPath: 'spacexApi',
   baseQuery: fetchBaseQuery({ baseUrl: 'https://api.spacexdata.com/v5/launches' }),
   endpoints: (build) => ({
     getSpacexByYear: build.mutation({
-      query: () => ({
+      query: (page) => ({
         url: '/query',
         method: 'POST',
         body: {
@@ -18,14 +17,17 @@ export const spacexApi = createApi({
             success: true,
           },
           options: {
+            page: `${page}`,
+            sort: {
+              date_utc: '-1',
+            },
             select: [
               'details', 'name', 'date_utc', 'success', 'links',
             ],
-            pagination: false,
+            pagination: true,
           },
         },
       }),
-      transformResponse: (response: { docs: Rocket[] }) => response.docs,
     }),
   }),
 });

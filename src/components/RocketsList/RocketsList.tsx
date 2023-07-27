@@ -1,65 +1,27 @@
-import { useCallback, useEffect, useState } from 'react';
 import PageButtons from '../PagesButtons/PageButtons';
 import Filter from '../Filter/Filter';
 import RocketCard from '../Rocket/RocketCard';
-import { Rocket } from '../../types/Rocket';
-import { useAppSelector } from '../../hooks/hooks';
+import { useAppDispatch, useAppSelector } from '../../hooks/hooks';
+import { sortMaxDateBottom, sortMaxDateTop } from '../../redux/missionsSlice';
+import { goToNextPage, goToPrevPage } from '../../redux/pagesSlice';
 
 export default function RocketsList() {
   const missions = useAppSelector((store) => store.missions.rockets);
-  const isLoading = useAppSelector((store) => store.missions.isLoading);
-  const isError = useAppSelector((store) => store.missions.isError);
-  const [currentPage, setCurrentPage] = useState(0);
-  const [missionsOnPage, setMissionsOnPage] = useState<Rocket[]>([]);
-  const missionsPerPage = 5;
-  const lastPage = Math.ceil(missions.length / missionsPerPage);
-  const pageNumberForUser = currentPage + 1;
+  const isLoading = useAppSelector((store) => store.status.isLoading);
+  const isError = useAppSelector((store) => store.status.isError);
+  const currentPage = useAppSelector((store) => store.pages.currentPage);
+  const lastPage = useAppSelector((store) => store.pages.totalPages);
+  const dispatch = useAppDispatch();
 
-  const setCurrentMissionsOnPage = useCallback(() => {
-    if (currentPage === 0) {
-      setMissionsOnPage(missions.slice(0, missionsPerPage));
-      return;
-    }
-    if (currentPage === Math.ceil(missions.length / missionsPerPage)) {
-      setMissionsOnPage(
-        missions
-          .slice((missions.length - Math.ceil(missions.length - missionsPerPage)), missions.length),
-      );
-      return;
-    }
-    setMissionsOnPage(
-      missions
-        .slice(currentPage * missionsPerPage, (currentPage * missionsPerPage) + missionsPerPage),
-    );
-  }, [currentPage, missions]);
-
-  const goToNextPage = () => {
-    setCurrentPage((prev) => (prev + 1));
-    setCurrentMissionsOnPage();
+  const handleNextPage = () => {
+    dispatch(goToNextPage());
     window.scrollTo(0, 0);
   };
 
-  const goToPrevPage = () => {
-    setCurrentPage((prev) => (prev - 1));
-    setCurrentMissionsOnPage();
+  const handlePrevPage = () => {
+    dispatch(goToPrevPage());
     window.scrollTo(0, 0);
   };
-
-  const filterMaxDateTop = () => {
-    const sortedResult = [...missionsOnPage]
-      .sort((a, b) => Date.parse(b.date_utc) - Date.parse(a.date_utc));
-    setMissionsOnPage(sortedResult);
-  };
-
-  const filterMaxDateBottom = () => {
-    const sortedResult = [...missionsOnPage]
-      .sort((a, b) => Date.parse(a.date_utc) - Date.parse(b.date_utc));
-    setMissionsOnPage(sortedResult);
-  };
-
-  useEffect(() => {
-    setCurrentMissionsOnPage();
-  }, [currentPage, missions, setCurrentMissionsOnPage]);
 
   return (
     <>
@@ -67,18 +29,18 @@ export default function RocketsList() {
         <div className="app-container__buttons-container">
           <PageButtons
             lastPage={lastPage}
-            pageNumberForUser={pageNumberForUser}
-            onNext={goToNextPage}
-            onPrev={goToPrevPage}
+            pageNumberForUser={currentPage}
+            onNext={handleNextPage}
+            onPrev={handlePrevPage}
           />
           <Filter
-            onMaxDate={filterMaxDateTop}
-            onMinDate={filterMaxDateBottom}
+            onMaxDate={() => dispatch(sortMaxDateTop())}
+            onMinDate={() => dispatch(sortMaxDateBottom())}
           />
         </div>
       )}
       {
-        missionsOnPage.map((mission) => (
+        missions.map((mission) => (
           <RocketCard
             key={mission.id}
             date_utc={mission.date_utc}
@@ -95,9 +57,9 @@ export default function RocketsList() {
           <div className="app-container__buttons-container app-container__buttons-container_bottom">
             <PageButtons
               lastPage={lastPage}
-              pageNumberForUser={pageNumberForUser}
-              onNext={goToNextPage}
-              onPrev={goToPrevPage}
+              pageNumberForUser={currentPage}
+              onNext={handleNextPage}
+              onPrev={handlePrevPage}
             />
           </div>
         )
