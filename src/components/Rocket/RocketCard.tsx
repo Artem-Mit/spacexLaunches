@@ -5,7 +5,6 @@ export default function RocketCard({
   date_utc, details, links, name,
 }: Rocket) {
   const date = new Date(date_utc).toLocaleString();
-  const randomElement = () => Math.floor(Math.random() * links.flickr.original.length);
 
   return (
     <article className="rocket">
@@ -17,7 +16,7 @@ export default function RocketCard({
           {`Launched at ${date}`}
         </p>
       </div>
-      <img src={links.flickr.original[randomElement()]} alt="RocketLaunch" className="rocket__photo" loading="lazy" />
+      <img src={links.flickr.original[0]} alt="RocketLaunch" className="rocket__photo" loading="lazy" />
     </article>
   );
 }

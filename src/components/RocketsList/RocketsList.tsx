@@ -7,10 +7,8 @@ import { goToNextPage, goToPrevPage } from '../../redux/pagesSlice';
 
 export default function RocketsList() {
   const missions = useAppSelector((store) => store.missions.rockets);
-  const isLoading = useAppSelector((store) => store.status.isLoading);
-  const isError = useAppSelector((store) => store.status.isError);
-  const currentPage = useAppSelector((store) => store.pages.currentPage);
-  const lastPage = useAppSelector((store) => store.pages.totalPages);
+  const { isError, isLoading } = useAppSelector((store) => store.status);
+  const { currentPage, totalPages } = useAppSelector((store) => store.pages);
   const dispatch = useAppDispatch();
 
   const handleNextPage = () => {
@@ -28,7 +26,7 @@ export default function RocketsList() {
       {!isLoading && !isError && (
         <div className="app-container__buttons-container">
           <PageButtons
-            lastPage={lastPage}
+            lastPage={totalPages}
             pageNumberForUser={currentPage}
             onNext={handleNextPage}
             onPrev={handlePrevPage}
@@ -56,7 +54,7 @@ export default function RocketsList() {
         !isLoading && !isError && (
           <div className="app-container__buttons-container app-container__buttons-container_bottom">
             <PageButtons
-              lastPage={lastPage}
+              lastPage={totalPages}
               pageNumberForUser={currentPage}
               onNext={handleNextPage}
               onPrev={handlePrevPage}

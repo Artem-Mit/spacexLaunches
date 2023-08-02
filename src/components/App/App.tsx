@@ -9,33 +9,35 @@ import RocketsList from '../RocketsList/RocketsList';
 import {
   setCurrentPage, setNextPage, setPrevPage, setTotalPages, setHasNextPage, setHasPrevPage,
 } from '../../redux/pagesSlice';
+import { Rocket } from '../../types/Rocket';
+
+interface IRocketsFetchData {
+  docs: Rocket[],
+  page: number,
+  totalPages: number,
+  nextPage: number | null,
+  prevPage: number | null,
+  hasNextPage: boolean,
+  hasPrevPage: boolean,
+}
 
 export default function App() {
   const [getSpacex, { isError, isLoading }] = useGetSpacexByYearMutation();
-  const currentPage = useAppSelector((store) => store.pages.currentPage);
+  const { currentPage } = useAppSelector((store) => store.pages);
   const dispatch = useAppDispatch();
 
   const getRockets = useCallback(async () => {
     try {
-      const {
-        docs,
-        page,
-        totalPages,
-        nextPage,
-        prevPage,
-        hasNextPage,
-        hasPrevPage,
-      } = await getSpacex(currentPage).unwrap();
-      dispatch(addMissions(docs));
-      dispatch(setCurrentPage(page));
-      dispatch(setTotalPages(totalPages));
-      dispatch(setNextPage(nextPage));
-      dispatch(setPrevPage(prevPage));
-      dispatch(setHasNextPage(hasNextPage));
-      dispatch(setHasPrevPage(hasPrevPage));
-    } catch (error) {
+      const data: IRocketsFetchData = await getSpacex(currentPage).unwrap();
+      dispatch(addMissions(data.docs));
+      dispatch(setCurrentPage(data.page));
+      dispatch(setTotalPages(data.totalPages));
+      dispatch(setNextPage(data.nextPage));
+      dispatch(setPrevPage(data.prevPage));
+      dispatch(setHasNextPage(data.hasNextPage));
+      dispatch(setHasPrevPage(data.hasPrevPage));
+    } catch {
       dispatch(setErrorStatus(true));
-      throw new Error(error.message);
     } finally {
       dispatch(setLoadingStatus(false));
     }

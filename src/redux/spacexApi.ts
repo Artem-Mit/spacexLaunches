@@ -5,7 +5,7 @@ export const spacexApi = createApi({
   baseQuery: fetchBaseQuery({ baseUrl: 'https://api.spacexdata.com/v5/launches' }),
   endpoints: (build) => ({
     getSpacexByYear: build.mutation({
-      query: (page) => ({
+      query: (page: number) => ({
         url: '/query',
         method: 'POST',
         body: {
