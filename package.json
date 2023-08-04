@@ -1,5 +1,5 @@
 {
-  "name": "SpaceX Launches",
+  "name": "spacex_launches",
   "version": "1.0.0",
   "description": "",
   "homepage": "https://Artem-Mit.github.io/spacexLaunches",
@@ -8,7 +8,8 @@
     "start": "webpack serve --open --env development",
     "build": "webpack --env production",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d dist"
+    "deploy": "gh-pages -d dist",
+    "lint": "eslint ."
   },
   "keywords": [],
   "author": "",

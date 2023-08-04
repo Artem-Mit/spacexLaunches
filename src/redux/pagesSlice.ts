@@ -1,14 +1,8 @@
 /* eslint-disable no-param-reassign */
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
+import { IRocketsFetchData } from '../types/RocketsFetchData';
 
-type PagesState = {
-  currentPage: number,
-  totalPages: number,
-  nextPage: number,
-  prevPage: number,
-  hasNextPage: boolean,
-  hasPrevPage: boolean,
-};
+type PagesState = Omit<IRocketsFetchData, 'docs'>;
 
 const initialState: PagesState = {
   currentPage: 1,
@@ -23,23 +17,12 @@ const pagesStateSlice = createSlice({
   name: 'statuses',
   initialState,
   reducers: {
-    setCurrentPage(state, action: PayloadAction<number>) {
-      state.currentPage = action.payload;
-    },
-    setTotalPages(state, action: PayloadAction<number>) {
-      state.totalPages = action.payload;
-    },
-    setNextPage(state, action: PayloadAction<number>) {
-      state.nextPage = action.payload;
-    },
-    setPrevPage(state, action: PayloadAction<number>) {
-      state.prevPage = action.payload;
-    },
-    setHasNextPage(state, action: PayloadAction<boolean>) {
-      state.hasNextPage = action.payload;
-    },
-    setHasPrevPage(state, action: PayloadAction<boolean>) {
-      state.hasPrevPage = action.payload;
+    setInitialPagesState(state, action: PayloadAction<PagesState>) {
+      state.totalPages = action.payload.totalPages;
+      state.nextPage = action.payload.nextPage;
+      state.prevPage = action.payload.prevPage;
+      state.hasNextPage = action.payload.hasNextPage;
+      state.hasPrevPage = action.payload.hasPrevPage;
     },
     goToPrevPage(state) {
       if (state.hasPrevPage) {
@@ -55,9 +38,6 @@ const pagesStateSlice = createSlice({
 });
 
 export const {
-  setCurrentPage,
-  setTotalPages,
-  setNextPage,
-  setHasNextPage, setHasPrevPage, goToPrevPage, goToNextPage, setPrevPage,
+  goToPrevPage, goToNextPage, setInitialPagesState,
 } = pagesStateSlice.actions;
 export default pagesStateSlice.reducer;

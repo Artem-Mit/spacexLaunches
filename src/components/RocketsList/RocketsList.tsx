@@ -11,14 +11,18 @@ export default function RocketsList() {
   const { currentPage, totalPages } = useAppSelector((store) => store.pages);
   const dispatch = useAppDispatch();
 
+  const scrollPageToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
   const handleNextPage = () => {
     dispatch(goToNextPage());
-    window.scrollTo(0, 0);
+    scrollPageToTop();
   };
 
   const handlePrevPage = () => {
     dispatch(goToPrevPage());
-    window.scrollTo(0, 0);
+    scrollPageToTop();
   };
 
   return (

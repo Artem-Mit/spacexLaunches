@@ -16,7 +16,6 @@ export default function RocketCard({
           {`Launched at ${date}`}
         </p>
       </div>
-      <img src={links.flickr.original[0]} alt="RocketLaunch" className="rocket__photo" loading="lazy" />
     </article>
   );
 }
