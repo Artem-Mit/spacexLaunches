@@ -1,8 +1,8 @@
 /* eslint-disable no-param-reassign */
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
-import { IRocketsFetchData } from '../types/RocketsFetchData';
+import { RocketsFetchData } from '../types/RocketsFetchData';
 
-type PagesState = Omit<IRocketsFetchData, 'docs'>;
+type PagesState = Omit<RocketsFetchData, 'docs'>;
 
 const initialState: PagesState = {
   currentPage: 1,

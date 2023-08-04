@@ -1,6 +1,6 @@
 import { Rocket } from './Rocket';
 
-export type IRocketsFetchData = {
+export type RocketsFetchData = {
   docs: Rocket[],
   currentPage: number,
   totalPages: number,

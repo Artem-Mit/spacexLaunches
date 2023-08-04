@@ -7,7 +7,7 @@ import { addMissions } from '../../redux/missionsSlice';
 import { setErrorStatus, setLoadingStatus } from '../../redux/loadingStatusSlice';
 import RocketsList from '../RocketsList/RocketsList';
 import { setInitialPagesState } from '../../redux/pagesSlice';
-import { IRocketsFetchData } from '../../types/RocketsFetchData';
+import { RocketsFetchData } from '../../types/RocketsFetchData';
 
 export default function App() {
   const [getSpacex, { isError, isLoading }] = useGetSpacexByYearMutation();
@@ -16,7 +16,7 @@ export default function App() {
 
   const getRockets = useCallback(async () => {
     try {
-      const data: IRocketsFetchData = await getSpacex(currentPage).unwrap();
+      const data: RocketsFetchData = await getSpacex(currentPage).unwrap();
       dispatch(addMissions(data.docs));
       dispatch(setInitialPagesState(data));
     } catch {
