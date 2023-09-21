@@ -5,7 +5,7 @@ interface IProps {
   onMinDate(): void,
 }
 
-export default function Filter({ onMaxDate, onMinDate }: IProps) {
+export default function Filter({ onMaxDate, onMinDate }: IProps): JSX.Element {
   return (
     <div className="app-container__filters">
       <span className="app-container__sort-text">Sort by date:</span>

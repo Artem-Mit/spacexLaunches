@@ -5,7 +5,7 @@ import { useAppDispatch, useAppSelector } from '../../hooks/hooks';
 import { sortMaxDateBottom, sortMaxDateTop } from '../../redux/missionsSlice';
 import { goToNextPage, goToPrevPage } from '../../redux/pagesSlice';
 
-export default function RocketsList() {
+export default function RocketsList(): JSX.Element {
   const missions = useAppSelector((store) => store.missions.rockets);
   const { isError, isLoading } = useAppSelector((store) => store.status);
   const { currentPage, totalPages } = useAppSelector((store) => store.pages);

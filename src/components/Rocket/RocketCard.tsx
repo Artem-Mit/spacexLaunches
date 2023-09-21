@@ -3,7 +3,7 @@ import './RocketCard.css';
 
 export default function RocketCard({
   date_utc, details, links, name,
-}: Rocket) {
+}: Rocket):JSX.Element {
   const date = new Date(date_utc).toLocaleString();
 
   return (

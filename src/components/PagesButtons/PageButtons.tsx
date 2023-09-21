@@ -10,7 +10,7 @@ interface IProps {
 
 export default function PageButtons({
   onNext, onPrev, pageNumberForUser, lastPage,
-}: IProps) {
+}: IProps): JSX.Element {
   const { hasNextPage, hasPrevPage } = useAppSelector((store) => store.pages);
   return (
     <div className="app-container__pages">

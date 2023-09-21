@@ -9,7 +9,7 @@ import RocketsList from '../RocketsList/RocketsList';
 import { setInitialPagesState } from '../../redux/pagesSlice';
 import { RocketsFetchData } from '../../types/RocketsFetchData';
 
-export default function App() {
+export default function App(): JSX.Element {
   const [getSpacex, { isError, isLoading }] = useGetSpacexByYearMutation();
   const { currentPage } = useAppSelector((store) => store.pages);
   const dispatch = useAppDispatch();
